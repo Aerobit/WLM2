@@ -409,6 +409,8 @@ while True:
             file = input('Enter /path/to/wordlist to the wordlist you want to append: ')
             file2 = input('Enter /path/to/wordlist to the second wordlist you want to combine: ')
             newfile = input('Enter /path/to/wordlist you want to create: ')
+            print('\n' * 2)
+            print('Please wait. This may take a while...')
             count = 0
             with open(file, 'r', errors='ignore') as fhand:
                 readfile = fhand.readlines()
@@ -427,10 +429,10 @@ while True:
             print('Wordlists have been combined and saved to', newfile)
             print('\n' * 2)
             input('Press enter to continue.')
-
         if choice == '2':
             clear()
             import glob
+            import shutil
             print('Wordlist Manipulator')
             print(bright_cyan + '\033[4m' + 'Combination Options' + '\033[0m' + white)
             print()
@@ -438,20 +440,25 @@ while True:
             path = input('Enter /path/to/directory where the wordlists are stored: ')
             newfile = input('Enter /path/to/wordlist you want to create: ')
             clear()
-            nhand = open(newfile, 'a', errors='ignore')
-            for file in glob.glob(path + '\*.*'):
+            print('These are the files that will be combined:')
+            for file in glob.glob(path + '/*.txt'):
                 print(file)
             print()
-            print('! Note that ALL files in directory will be combined. Do you want to continue?')
+            print('! Note that ALL text files in the directory will be combined. Do you want to continue?')
             choice = input('"Y" to continue or "Q" to go back.')
-            if choice == 'y':
-                for file in glob.glob(path + '\*.*'):
-                    with open(file, 'r', errors='ignore') as infile:
-                        for lines in infile:
-                            nhand.write(lines)
-                nhand.close()
+            if choice.lower() == 'y':
+                print('Please wait, this may take a while...')
+                with open(newfile, 'a', errors='ignore') as nhand:
+                    for file in glob.glob(path + '/*.txt'):
+                        with open(file, 'r', errors='ignore') as infile:
+                            shutil.copyfileobj(infile, nhand)
+                print('\n' * 2)
+                print('Wordlists have been combined and saved to', newfile)
+                print('\n' * 2)
+                input('Press enter to continue.')
             else:
                 continue
+##### Start Here
     elif choice == '3':
         prefix_menu()
         choice = input('Choose from the above menu: ')
