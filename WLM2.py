@@ -266,128 +266,135 @@ while True:
             case = input('Change first letter to lower case or upper case.\nChoose "u" or "l": ')
             file = input('Enter /path/to/wordlist you want to edit: ')
             newfile = input('Enter /path/to/wordlist you want to create: ')
+            print('Please wait, this may take a while...')
             if case == 'u':
-                with open(file, errors='ignore') as fhand:
-                    nhand = open(newfile, 'w', errors='ignore')
-                    for lines in fhand:
-                        words_s = lines.rstrip()
-                        try:
-                            words_c = words_s[0].upper() + words_s[1:]
-                        except:
-                            continue
-                        nhand.write(words_c)
-                        nhand.write('\n')
-                        #print('Working..',end='\r')
-                nhand.close()
+                with open(file, 'r', errors='ignore') as fhand:
+                    with open(newfile, 'w', errors='ignore') as nhand:
+                        for line in fhand:
+                            line = line.strip()
+                            try:
+                                modified_line = line[0].upper() + line[1:]
+                            except IndexError:
+                                continue
+                            nhand.write(modified_line + '\n')
             elif case == 'l':
                 with open(file, 'r', errors='ignore') as fhand:
-                    nhand = open(newfile, 'w', errors='ignore')
-                    for lines in fhand:
-                        words_s = lines.rstrip()
-                        try:
-                            words_c = words_s[0].lower() + words_s[1:]
-                        except:
-                            continue
-                        nhand.write(words_c)
-                        nhand.write('\n')
-                        #print('Working..',end='\r')
-                nhand.close()
+                    with open(newfile, 'w', errors='ignore') as nhand:
+                        for line in fhand:
+                            line = line.strip()
+                            try:
+                                modified_line = line[0].lower() + line[1:]
+                            except IndexError:
+                                continue
+                            nhand.write(modified_line + '\n')
             else:
-                menu()
+                print("Invalid choice. Please enter 'u' or 'l'.")
+            print('\n' * 2)
+            print('Wordlist has been modified and saved to', newfile)
+            print('\n' * 2)
+            input('Press enter to continue.')
         if choice == '2':
-                clear()
-                print('Wordlist Manipulator')
-                print(bright_cyan + '\033[4m' + 'Case Options' + '\033[0m' + white)
-                print()
-                case = input('Change last letter to lower case or upper case.\nChoose "u" or "l": ')
-                file = input('Enter /path/to/wordlist you want to edit: ')
-                newfile = input('Enter /path/to/wordlist you want to create: ')
-                if case == 'u':
-                    with open(file, errors='ignore') as fhand:
-                        nhand = open(newfile, 'w', errors='ignore')
-                        for lines in fhand:
-                            words_s = lines.rstrip()
+            clear()
+            print('Wordlist Manipulator')
+            print(bright_cyan + '\033[4m' + 'Case Options' + '\033[0m' + white)
+            print()
+            case = input('Change last letter to lower case or upper case.\nChoose "u" or "l": ')
+            file = input('Enter /path/to/wordlist you want to edit: ')
+            newfile = input('Enter /path/to/wordlist you want to create: ')
+            print('Please wait, this may take a while...')
+            if case == 'u':
+                with open(file, 'r', errors='ignore') as fhand:
+                    with open(newfile, 'w', errors='ignore') as nhand:
+                        for line in fhand:
+                            line = line.strip()
                             try:
-                                words_c = words_s[:-1] + words_s[-1].upper()
-                            except:
+                                modified_line = line[:-1] + line[-1].upper()
+                            except IndexError:
                                 continue
-                            nhand.write(words_c)
-                            nhand.write('\n')
-                            #print('Working..',end='\r')
-                    nhand.close()
-                elif case == 'l':
-                    with open(file, 'r', errors='ignore') as fhand:
-                        nhand = open(newfile, 'w', errors='ignore')
-                        for lines in fhand:
-                            words_s = lines.rstrip()
+                            nhand.write(modified_line + '\n')
+            elif case == 'l':
+                with open(file, 'r', errors='ignore') as fhand:
+                    with open(newfile, 'w', errors='ignore') as nhand:
+                        for line in fhand:
+                            line = line.strip()
                             try:
-                                words_c = words_s[:-1] + words_s[-1:].lower()
-                            except:
+                                modified_line = line[:-1] + line[-1].lower()
+                            except IndexError:
                                 continue
-                            nhand.write(words_c)
-                            nhand.write('\n')
-                            #print('Working..',end='\r')
-                    nhand.close()
+                            nhand.write(modified_line + '\n')
+            else:
+                print("Invalid choice. Please enter 'u' or 'l'.")
+            print('\n' * 2)
+            print('Wordlist has been modified and saved to', newfile)
+            print('\n' * 2)
+            input('Press enter to continue.')
+# Want to add if block to capitalize and lowercase all words in line.
         if choice == '3':
-                clear()
-                print('Wordlist Manipulator')
-                print(bright_cyan + '\033[4m' + 'Case Options' + '\033[0m' + white)
-                print()
-                print('Change all letters to uppercase')
-                file = input('Enter /path/to/wordlist you want to edit: ')
-                newfile = input('Enter /path/to/wordlist you want to create: ')
-                with open(file, errors='ignore') as fhand:
-                    nhand = open(newfile, 'w', errors='ignore')
-                    for lines in fhand:
-                        words_s = lines.rstrip()
+            clear()
+            print('Wordlist Manipulator')
+            print(bright_cyan + '\033[4m' + 'Case Options' + '\033[0m' + white)
+            print()
+            print('Change all letters to uppercase')
+            file = input('Enter /path/to/wordlist you want to edit: ')
+            newfile = input('Enter /path/to/wordlist you want to create: ')
+            print('Please wait, this may take a while...')
+            with open(file, 'r', errors='ignore') as fhand:
+                with open(newfile, 'w', errors='ignore') as nhand:
+                    for line in fhand:
+                        line = line.strip()
                         try:
-                            words_c = words_s.upper()
+                            modified_line = line.upper()
                         except:
                             continue
-                        nhand.write(words_c)
-                        nhand.write('\n')
-                        #print('Working..',end='\r')
-                nhand.close()
+                        nhand.write(modified_line + '\n')
+            print('\n' * 2)
+            print('Wordlist has been modified and saved to', newfile)
+            print('\n' * 2)
+            input('Press enter to continue.')
         if choice == '4':
-                clear()
-                print('Wordlist Manipulator')
-                print(bright_cyan + '\033[4m' + 'Case Options' + '\033[0m' + white)
-                print()
-                print('Change all letters to lowercase')
-                file = input('Enter /path/to/wordlist you want to edit: ')
-                newfile = input('Enter /path/to/wordlist you want to create: ')
-                with open(file, errors='ignore') as fhand:
-                    nhand = open(newfile, 'w', errors='ignore')
-                    for lines in fhand:
-                        words_s = lines.rstrip()
+            clear()
+            print('Wordlist Manipulator')
+            print(bright_cyan + '\033[4m' + 'Case Options' + '\033[0m' + white)
+            print()
+            print('Change all letters to lowercase')
+            file = input('Enter /path/to/wordlist you want to edit: ')
+            newfile = input('Enter /path/to/wordlist you want to create: ')
+            print('Please wait, this may take a while...')
+            with open(file, 'r', errors='ignore') as fhand:
+                with open(newfile, 'w', errors='ignore') as nhand:
+                    for line in fhand:
+                        line = line.strip()
                         try:
-                            words_c = words_s.lower()
+                            modified_line = line.lower()
                         except:
                             continue
-                        nhand.write(words_c)
-                        nhand.write('\n')
-                        #print('Working..',end='\r')
-                nhand.close()
+                        nhand.write(modified_line + '\n')
+            print('\n' * 2)
+            print('Wordlist has been modified and saved to', newfile)
+            print('\n' * 2)
+            input('Press enter to continue.')
         if choice == '5':
-                clear()
-                print('Wordlist Manipulator')
-                print(bright_cyan + '\033[4m' + 'Case Options' + '\033[0m' + white)
-                print()
-                print('Invert case (lower to upper, upper to lower')
-                file = input('Enter /path/to/wordlist you want to edit: ')
-                newfile = input('Enter /path/to/wordlist you want to create: ')
-                with open(file, errors='ignore') as fhand:
-                    nhand = open(newfile, 'w', errors='ignore')
-                    for lines in fhand:
-                        words_s = lines.rstrip()
+            clear()
+            print('Wordlist Manipulator')
+            print(bright_cyan + '\033[4m' + 'Case Options' + '\033[0m' + white)
+            print()
+            print('Invert case (lower to upper, upper to lower')
+            file = input('Enter /path/to/wordlist you want to edit: ')
+            newfile = input('Enter /path/to/wordlist you want to create: ')
+            print('Please wait, this may take a while...')
+            with open(file, 'r', errors='ignore') as fhand:
+                with open(newfile, 'w', errors='ignore') as nhand:
+                    for line in fhand:
+                        line = line.strip()
                         try:
-                            words_c = words_s.swapcase()
+                            modified_line = line.swapcase()
                         except:
                             continue
-                        nhand.write(words_c)
-                        nhand.write('\n')
-                        #print('Working..',end='\r')
-                nhand.close()
+                        nhand.write(modified_line + '\n')
+            print('\n' * 2)
+            print('Wordlist has been modified and saved to', newfile)
+            print('\n' * 2)
+            input('Press enter to continue.')
         if choice == "q":
             menu()
     elif choice == '2':
@@ -398,24 +405,29 @@ while True:
             print('Wordlist Manipulator')
             print(bright_cyan + '\033[4m' + 'Combination Options' + '\033[0m' + white)
             print()
-            print('Combine each line from one list to each each line in another list')
+            print('Combine each line from one list to each line in another list')
             file = input('Enter /path/to/wordlist to the wordlist you want to append: ')
             file2 = input('Enter /path/to/wordlist to the second wordlist you want to combine: ')
             newfile = input('Enter /path/to/wordlist you want to create: ')
-            nhand = open(newfile, 'w', errors='ignore')
             count = 0
             with open(file, 'r', errors='ignore') as fhand:
                 readfile = fhand.readlines()
             with open(file2, 'r', errors='ignore') as f1hand:
                 readfile1 = f1hand.readlines()
-            for lines in readfile:
-                try:
-                    combined = readfile[count].rstrip() + readfile1[count].lstrip()
-                except:
-                    continue
-                count = count + 1
-                nhand.write(combined)
-            nhand.close()
+            with open(newfile, 'w', errors='ignore') as nhand:
+                for line1, line2 in zip(readfile, readfile1):
+                    combined = line1.strip() + line2.strip()
+                    nhand.write(combined + '\n')
+                    count += 1
+                for line in readfile[count:]:
+                    nhand.write(line.strip() + '\n')
+                for line in readfile1[count:]:
+                    nhand.write(line.strip() + '\n')
+            print('\n' * 2)
+            print('Wordlists have been combined and saved to', newfile)
+            print('\n' * 2)
+            input('Press enter to continue.')
+
         if choice == '2':
             clear()
             import glob
