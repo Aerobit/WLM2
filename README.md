@@ -1,4 +1,3 @@
-```markdown
 # Word List Manipulator 2.0
 
 Word List Manipulator 2.0 is a powerful tool for editing and optimizing wordlists. With its easy-to-use command-line interface, you can perform various operations on your wordlists, including removing duplicates, optimizing for WPA/WPA2, and more.
@@ -32,4 +31,4 @@ If you'd like to contribute to the Word List Manipulator 2.0, please feel free t
 ## License
 
 Word List Manipulator 2.0 is open-source software released under the [MIT License](https://github.com/your-repo/WordListManipulator/blob/main/LICENSE).
-```
+
