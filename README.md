@@ -83,7 +83,7 @@ Word List Manipulator 2.0 offers a wide range of features for manipulating wordl
 ## How to Use
 
 1. **Clone the repository**: Download or clone the Word List Manipulator 2.0 repository from GitHub.
-2. **Run the script**: Run the script by executing `python3 WordListManipulator.py` in your terminal or command prompt.
+2. **Run the script**: Run the script by executing `python3 WLM2.py` in your terminal or command prompt.
 3. **Follow the prompts**: The script will guide you through the available options. Follow the prompts to select the desired operation and provide any required input.
 4. **Process your wordlists**: The script will process your wordlists based on your selections and display any relevant results.
 
